@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEGURTECH | Inteligencia aplicada al servicio de su tranquilidad</title>
+  <meta name="description" content="Propuesta corporativa premium de SEGURTECH, con identidad visual vectorial construida en HTML/CSS/SVG." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --bg-soft: #eef3f9;
+      --panel: #ffffff;
+      --panel-soft: #f8fbff;
+      --text: #162230;
+      --muted: #5a6b7d;
+      --border: #d9e3ef;
+      --dark: #0e1825;
+      --dark-2: #162438;
+      --blue: #2fa3f7;
+      --blue-2: #60c4ff;
+      --silver: #aeb8c4;
+      --glow: rgba(47, 163, 247, 0.22);
+      --success: #25d366;
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --shadow-lg: 0 24px 60px rgba(18, 37, 63, 0.12);
+      --shadow-md: 0 12px 30px rgba(18, 37, 63, 0.08);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(47,163,247,0.08), transparent 26%),
+        linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(22,34,48,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(22,34,48,0.03) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0));
+      z-index: -1;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin-inline: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(255,255,255,0.8);
+      border-bottom: 1px solid rgba(14,24,37,0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+      min-width: 0;
+    }
+
+    .brand-symbol {
+      overflow: hidden;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #132033, #0d1725);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 8px;
+      flex: 0 0 auto;
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      color: var(--dark);
+    }
+
+    .brand-symbol img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      animation: floatLogo 4.5s ease-in-out infinite;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.22));
+    }
+
+    .brand-text p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.94rem;
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .nav a:hover {
+      color: var(--dark);
+      background: rgba(47,163,247,0.08);
+    }
+
+    .nav .cta-mini {
+      background: linear-gradient(135deg, var(--blue-2), var(--blue));
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(47,163,247,0.18);
+    }
+
+    .hero {
+      padding: 34px 0 22px;
+    }
+
+    .hero-shell {
+      background: linear-gradient(135deg, #0d1725 0%, #162438 100%);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 75% 20%, rgba(96,196,255,0.24), transparent 24%),
+        radial-gradient(circle at 18% 30%, rgba(47,163,247,0.14), transparent 20%);
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+      padding: clamp(24px, 4vw, 44px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #dbe9f6;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy h2 {
+      margin: 18px 0 14px;
+      font-size: clamp(2rem, 4.3vw, 4rem);
+      line-height: 1.02;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .hero-copy h2 span { color: var(--blue-2); }
+
+    .hero-copy p {
+      color: #c7d5e4;
+      font-size: 1.03rem;
+      margin: 0 0 20px;
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 14px 20px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-2), var(--blue));
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(47,163,247,0.22);
+    }
+
+    .btn-secondary {
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 26px;
+      padding: 20px;
+      box-shadow: 0 18px 42px rgba(0,0,0,0.22);
+    }
+
+    .hero-card h3 {
+      margin: 0 0 10px;
+      color: #fff;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: #c7d5e4;
+      font-size: 0.95rem;
+    }
+
+    .section {
+      padding: 24px 0;
+    }
+
+    .section-head {
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--dark);
+      font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    .content-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .content-card p {
+      color: var(--text);
+      line-height: 1.75;
+      margin: 0 0 16px;
+    }
+
+    .content-card p:last-child { margin-bottom: 0; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .list-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .list-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-2));
+    }
+
+    .list-card h3 {
+      margin: 0 0 14px;
+      color: var(--dark);
+      font-size: 1.08rem;
+    }
+
+    ul.feature-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 12px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .feature-list li:last-child { margin-bottom: 0; }
+
+    .feature-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-2), var(--blue));
+      box-shadow: 0 0 0 6px rgba(47,163,247,0.10);
+    }
+
+    .sentinel-wrap {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .premium-panel {
+      background: linear-gradient(180deg, #132033 0%, #0e1825 100%);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      color: #fff;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .premium-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(96,196,255,0.20), transparent 24%);
+      pointer-events: none;
+    }
+
+    .premium-panel h3 {
+      margin: 0 0 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+    }
+
+    .premium-panel p {
+      margin: 0 0 18px;
+      color: #c7d5e4;
+      line-height: 1.7;
+    }
+
+    .signal-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .signal-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .signal-item strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+
+    .signal-item span {
+      font-size: 0.83rem;
+      color: #c7d5e4;
+    }
+
+    .pill {
+      white-space: nowrap;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #dff6ff;
+      background: rgba(47,163,247,0.14);
+      border: 1px solid rgba(96,196,255,0.2);
+    }
+
+    .logo-real {
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+      display: block;
+      animation: floatLogo 4.8s ease-in-out infinite;
+      filter: drop-shadow(0 22px 34px rgba(0,0,0,0.32));
+    }
+
+    .svg-card {
+      background: linear-gradient(180deg, #0f1b2b 0%, #101f31 100%);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-lg);
+      min-height: 460px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svg-card::before {
+      content: "";
+      position: absolute;
+      inset: auto 10% -20% 10%;
+      height: 160px;
+      background: radial-gradient(circle, rgba(47,163,247,0.24), transparent 60%);
+      filter: blur(20px);
+    }
+
+    .svg-badge {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(7, 14, 24, 0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .svg-badge strong {
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 0.12em;
+      font-size: 0.92rem;
+    }
+
+    .svg-badge span {
+      color: #b8c7d9;
+      font-size: 0.82rem;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #132033 0%, #1a2a42 100%);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      color: #fff;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      box-shadow: var(--shadow-lg);
+      margin-top: 8px;
+    }
+
+    .cta-box h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .cta-box p {
+      margin: 0;
+      color: #c7d5e4;
+      line-height: 1.7;
+    }
+
+    .whatsapp-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 260px;
+      min-height: 56px;
+      padding: 16px 22px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-weight: 800;
+      color: #fff;
+      background: linear-gradient(135deg, #37de7e, var(--success));
+      box-shadow: 0 16px 34px rgba(37,211,102,0.24);
+      transition: 0.25s ease;
+    }
+
+    .whatsapp-button:hover { transform: translateY(-2px); }
+
+    footer {
+      padding: 26px 0 40px;
+    }
+
+    .footer-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 24px;
+    }
+
+    .footer-card p {
+      margin: 0 0 8px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .footer-card p:last-child { margin-bottom: 0; }
+
+    .footer-card strong {
+      color: var(--dark);
+    }
+
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .grid-2,
+      .sentinel-wrap,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav { justify-content: flex-start; }
+
+      .hero-copy h2 { font-size: 1.9rem; }
+
+      .content-card,
+      .list-card,
+      .premium-panel,
+      .svg-card,
+      .footer-card,
+      .cta-box,
+      .hero-card {
+        padding: 20px;
+      }
+
+      .svg-badge {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .whatsapp-button {
+        width: 100%;
+        min-width: unset;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#inicio" class="brand">
+        <div class="brand-symbol" aria-hidden="true">
+          <img src="https://raw.githubusercontent.com/Oficinavirtual01/segurtech/main/segurtech-logo.png" alt="Logo Segurtech" />
+        </div>
+        <div class="brand-text">
+          <h1>SEGURTECH</h1>
+          <p>Inteligencia aplicada al servicio de su tranquilidad</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="#riesgo">Riesgo</a>
+        <a href="#sentinel">Sentinel</a>
+        <a href="#diferenciales">Diferenciales</a>
+        <a href="#contacto" class="cta-mini">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-shell">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            
+            <h2>Seguridad <span>inteligente</span> con estética sobria y visión tecnológica.</h2>
+            <p>
+              Una propuesta visual más elegante, más institucional y más vendible para servicios técnicos, conservando el contenido original pero elevando la experiencia de marca.
+            </p>
+            <div class="hero-actions">
+              <a href="#contacto" class="btn btn-primary">Solicitar informe preliminar</a>
+              <a href="#riesgo" class="btn btn-secondary">Explorar propuesta</a>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="svg-card">
+              <img src="https://raw.githubusercontent.com/Oficinavirtual01/segurtech/main/segurtech-logo.png" alt="Logo Segurtech" class="logo-real" />
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="content-card">
+          <p><em>Presentación institucional:</em></p>
+          <p>La seguridad no puede ser reactiva; debe ser inteligente. Los eventos recientes en distintos entornos residenciales y sectores de acceso controlado demuestran que los esquemas tradicionales pueden fallar por falta de herramientas de control. Presentamos una solución que fusiona presencia física con <em>Inteligencia Criminal Aplicada</em>, garantizando un perímetro impenetrable mientras ustedes descansan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="riesgo">
+      <div class="container">
+        <div class="section-head">
+          <h2>1. Análisis de Riesgo y Perímetros</h2>
+        </div>
+        <div class="list-card">
+          <ul class="feature-list">
+            <li><em>Análisis Geográfico en Tiempo Real:</em> IA aplicada para monitorear el baldío y las vías, detectando patrones de aproximación antes de que toquen el paredón.</li>
+            <li><em>Anillos de Protección:</em> Alerta temprana en garita si se detecta presencia en el anillo exterior (maleza/vías), eliminando el factor sorpresa.</li>
+            <li><em>Detección Técnica:</em> Identificación de rutas de escape mediante tecnología de mapeo térmico nocturno.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sentinel">
+      <div class="container sentinel-wrap">
+        <div class="premium-panel">
+          <h3>2. Sistema Sentinel: Control Inviolable</h3>
+          <p>Como herramienta central, <strong>SegurTech</strong> utiliza <em>Sentinel</em> para blindar el servicio nocturno:</p>
+          <div class="signal-list">
+            <div class="signal-item">
+              <div>
+                <strong>Gestión de Rondas por IA</strong>
+                <span>Verifica la posición del vigilador en tiempo real.</span>
+              </div>
+              <span class="pill">Activo</span>
+            </div>
+            <div class="signal-item">
+              <div>
+                <strong>Acceso Transparente</strong>
+                <span>Los residentes, administradores y responsables del servicio pueden evidenciar las tareas realizadas.</span>
+              </div>
+              <span class="pill">Visible</span>
+            </div>
+            <div class="signal-item">
+              <div>
+                <strong>Alerta Anti-Relajamiento</strong>
+                <span>Dispara alertas de supervisión ante falta de movimiento previsto.</span>
+              </div>
+              <span class="pill">En línea</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-card">
+          <ul class="feature-list">
+            <li><em>Gestión de Rondas por IA:</em> Verifica la posición del vigilador en tiempo real, obligando a patrullajes dinámicos e impredecibles por el paredón crítico.</li>
+            <li><em>Acceso Transparente:</em> Los vecinos pueden evidenciar las tareas realizadas. El cliente conserva el control real del servicio.</li>
+            <li><em>Alerta Anti-Relajamiento:</em> El sistema dispara alertas de supervisión si no se registra el movimiento previsto en horas de sueño.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="diferenciales">
+      <div class="container grid-2">
+        <div class="list-card">
+          <h3>3. Diferenciales de SegurTech</h3>
+          <ul class="feature-list">
+            <li><em>Trazabilidad Digital:</em> Informes de gestión basados en datos reales, no en conjeturas.</li>
+            <li><em>Respuesta Inmediata:</em> Alertas de pánico integradas directamente con la garita operativa.</li>
+          </ul>
+        </div>
+
+        <div class="list-card">
+          <h3>Optimización de Costos y Eficiencia</h3>
+          <p>Al eficientizar el uso del recurso humano a través de tecnología avanzada, nuestra metodología permite que la inteligencia asuma las tareas de vigilancia más críticas. Esto reduce costos operativos por redundancia humana y garantiza una seguridad constante que no depende del cansancio del personal.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h3>¿Desea recibir el informe preliminar de vulnerabilidades?</h3>
+            <p>Contacte directamente para conocer la propuesta de SegurTech para barrios privados.</p>
+          </div>
+          <a href="https://wa.me/5492614707158?text=Hola%2C%20me%20interesa%20la%20propuesta%20de%20SegurTech%20para%20barrios%20privados" class="whatsapp-button">
+            Contactar al Director Ejecutivo
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-card">
+        <p><strong>SEGURTECH</strong> - Dirección Ejecutiva</p>
+        <p>Seguridad Inteligente para Barrios Privados</p>
+        <p>2026 &copy; Todos los derechos reservados.</p>
+                <p>Landing desarrollada por <strong>Nexus Procesos Automatizaciones</strong>.<br>Nexusprocesos.com</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
